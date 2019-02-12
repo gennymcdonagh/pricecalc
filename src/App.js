@@ -1,25 +1,30 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Form from './components/Form/Form';
+import Result from './components/Result/Result'
 
 class App extends Component {
+
+  calculateTotals = (number) => {
+    console.log('calc');
+    this.setState({resultData : number * 2})
+  }
+
+  constructor() {
+    super();
+    this.state = {
+      resultData: 0
+    };
+  }
+
   render() {
+    const {resultData} = this.state;
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <h2>pricecalc</h2>
+        <Form calculateTotals={this.calculateTotals} />
+        <Result data={resultData} />
       </div>
     );
   }
