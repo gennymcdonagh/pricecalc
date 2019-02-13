@@ -1,0 +1,10 @@
+.form {
+  max-width: 300px;
+  margin: 0 auto;
+}
+
+input {
+  width: 100%;
+  margin: 3px 0;
+  padding: 5px;
+}

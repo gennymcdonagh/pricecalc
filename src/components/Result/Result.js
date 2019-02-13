@@ -4,9 +4,17 @@ import './Result.css';
 class Result extends Component {
     render() {
       const { data } = this.props;
-      console.log(data);
+
+      let html = [];
+
+      for (const prop in data) {
+        html.push(<div key={prop}><span>{prop}: </span><span>{data[prop]}</span></div>);
+      }
+      
       return (
-        <div>result: {data}</div>
+        <div>
+          {html}
+        </div>
       )
     }
 }

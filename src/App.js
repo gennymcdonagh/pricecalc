@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import Form from './components/Form/Form';
 import Result from './components/Result/Result'
@@ -7,34 +6,36 @@ import Result from './components/Result/Result'
 class App extends Component {
 
   calculateTotals = (data) => {
-    console.log(data);
     const { cost, items, time, wage, markup } = data;
 
     const materialsPerItem = cost / items;
     const wagePerItem = (time * wage) / items;
-    const materialsWagePerItem = materialsPerItem + wagePerItem;
-    const markupPrice = materialsWagePerItem * (markup / 100)
-    const total = materialsWagePerItem + markupPrice;
+    const costToMake = materialsPerItem + wagePerItem;
+    const profit = costToMake * (markup / 100)
+    const retailPrice = costToMake + profit;
 
     this.setState({
-      resultData: total
+      "Cost to make": costToMake,
+      "Retail price": retailPrice,
+      "Profit": profit,
     });
   }
 
   constructor() {
     super();
     this.state = {
-      resultData: 0
+      "Cost to make": 0,
+      "Retail price": 0,
+      "Profit": 0,
     };
   }
 
   render() {
-    const {resultData} = this.state;
     return (
       <div className="App">
         <h2>pricecalc</h2>
         <Form calculateTotals={this.calculateTotals} />
-        <Result data={resultData} />
+        <Result data={this.state} />
       </div>
     );
   }
