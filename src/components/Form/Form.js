@@ -4,27 +4,76 @@ import './Form.css';
 class Form extends Component {
   constructor(props) {
     super(props);
-    this.state = { inputValue: null};
+    this.state = {
+      cost: "",
+      items: "",
+      time: "",
+      wage: "",
+      markup: ""
+    };
+
+    this.handleInputChange = this.handleInputChange.bind(this);
   }
 
-  updateInputValue(e) {
+  handleInputChange(e) {
     this.setState({
-      inputValue: e.target.value
+      [e.target.name]: e.target.value
     });
   }
 
   render() {
     const { calculateTotals } = this.props;
-    const { inputValue } = this.state;
+    const { cost, items, time, wage, markup } = this.state;
 
     return (
       <div className="form">
-        form
-        <div>
-          <label htmlFor="input1">input:</label>
-          <input id="input1" value={inputValue} onChange={e => this.updateInputValue(e)} />
-        </div>
-        <button onClick={() => calculateTotals(inputValue)}>calculate</button>
+
+        <input
+          value={cost}
+          onChange={this.handleInputChange}
+          placeholder="Cost of materials"
+          type="number"
+          name="cost"
+          required
+        />
+
+        <input
+          value={items}
+          onChange={this.handleInputChange}
+          placeholder="Number of items made"
+          type="number"
+          name="items"
+          required
+        />
+
+        <input
+          value={time}
+          onChange={this.handleInputChange}
+          placeholder="Hours to make that many items"
+          type="number"
+          name="time"
+          required
+        />
+
+        <input
+          value={wage}
+          onChange={this.handleInputChange}
+          placeholder="Hourly wage"
+          type="number"
+          name="wage"
+          required
+        />
+
+        <input
+          value={markup}
+          onChange={this.handleInputChange}
+          placeholder="Retail profit markup %"
+          type="number"
+          name="markup"
+          required
+        />
+
+        <button onClick={() => calculateTotals(this.state)}>calculate</button>
       </div>
     );
   }

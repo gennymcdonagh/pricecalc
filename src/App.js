@@ -6,9 +6,19 @@ import Result from './components/Result/Result'
 
 class App extends Component {
 
-  calculateTotals = (number) => {
-    console.log('calc');
-    this.setState({resultData : number * 2})
+  calculateTotals = (data) => {
+    console.log(data);
+    const { cost, items, time, wage, markup } = data;
+
+    const materialsPerItem = cost / items;
+    const wagePerItem = (time * wage) / items;
+    const materialsWagePerItem = materialsPerItem + wagePerItem;
+    const markupPrice = materialsWagePerItem * (markup / 100)
+    const total = materialsWagePerItem + markupPrice;
+
+    this.setState({
+      resultData: total
+    });
   }
 
   constructor() {
