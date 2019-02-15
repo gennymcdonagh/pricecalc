@@ -1,0 +1,17 @@
+.number-input {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 5px;
+}
+
+.number-input label {
+  margin-right: 5px;
+  padding: 5px;
+  width: 50%;
+  text-align: right
+}
+
+.number-input input {
+  padding: 5px;
+  width: 50%;
+}

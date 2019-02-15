@@ -15,27 +15,28 @@ class App extends Component {
     const retailPrice = costToMake + profit;
 
     this.setState({
-      "Cost to make": costToMake,
-      "Retail price": retailPrice,
-      "Profit": profit,
+      resultData: {
+        "Cost to make": costToMake,
+        "Retail price": retailPrice,
+        "Profit": profit,
+      }
     });
   }
 
   constructor() {
     super();
     this.state = {
-      "Cost to make": 0,
-      "Retail price": 0,
-      "Profit": 0,
+      resultData: {}
     };
   }
 
   render() {
+    const { resultData } = this.state;
     return (
       <div className="App">
         <h2>pricecalc</h2>
         <Form calculateTotals={this.calculateTotals} />
-        <Result data={this.state} />
+        {resultData && <Result data={resultData} />}
       </div>
     );
   }

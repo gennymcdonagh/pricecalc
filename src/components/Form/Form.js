@@ -1,4 +1,11 @@
+/* 
+todo: validation 
+conditional label for hours field
+units
+*/
+
 import React, { Component } from 'react';
+import { NumberInput } from '../Input/NumberInput';
 import './Form.css';
 
 class Form extends Component {
@@ -28,52 +35,42 @@ class Form extends Component {
     return (
       <div className="form">
 
-        <input
+        <NumberInput
           value={cost}
           onChange={this.handleInputChange}
-          placeholder="Cost of materials"
-          type="number"
-          name="cost"
-          required
+          label="Cost of materials"
+          id="cost"
         />
 
-        <input
+        <NumberInput
           value={items}
           onChange={this.handleInputChange}
-          placeholder="Number of items made"
-          type="number"
-          name="items"
-          required
+          label="Number of items made"
+          id="items"
         />
 
-        <input
+        <NumberInput
           value={time}
           onChange={this.handleInputChange}
-          placeholder="Hours to make that many items"
-          type="number"
-          name="time"
-          required
+          label="Hours to make that many items"
+          id="time"
         />
 
-        <input
+        <NumberInput
           value={wage}
           onChange={this.handleInputChange}
-          placeholder="Hourly wage"
-          type="number"
-          name="wage"
-          required
+          label="Hourly wage"
+          id="wage"
         />
 
-        <input
+        <NumberInput
           value={markup}
           onChange={this.handleInputChange}
-          placeholder="Retail profit markup %"
-          type="number"
-          name="markup"
-          required
+          label="Retail profit markup %"
+          id="markup"
         />
 
-        <button onClick={() => calculateTotals(this.state)}>calculate</button>
+        <button onClick={() => calculateTotals(this.state)}>Calculate</button>
       </div>
     );
   }

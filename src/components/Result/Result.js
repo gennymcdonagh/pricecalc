@@ -8,13 +8,18 @@ class Result extends Component {
       let html = [];
 
       for (const prop in data) {
-        html.push(<div key={prop}><span>{prop}: </span><span>{data[prop]}</span></div>);
+        html.push(
+          <li key={prop}>
+            <span className="result-list__label">{prop}: </span>
+            <span className="result-list__value">${data[prop]}</span>
+          </li>
+        );
       }
       
       return (
-        <div>
+        <ul className="result-list">
           {html}
-        </div>
+        </ul>
       )
     }
 }

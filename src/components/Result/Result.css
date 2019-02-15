@@ -1,0 +1,21 @@
+.result-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.result-list li {
+  padding: 5px;
+  display: flex;
+  justify-content: center;
+}
+
+.result-list__label {
+  width: 50%;
+  text-align: right;
+  margin-right: 10px;
+}
+
+.result-list__value {
+  width: 50%;
+  text-align: left;
+}
