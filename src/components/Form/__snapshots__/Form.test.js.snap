@@ -1,0 +1,98 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  className="form"
+>
+  <div
+    className="number-input"
+  >
+    <label
+      htmlFor="cost"
+    >
+      Cost of materials
+    </label>
+    <input
+      id="cost"
+      name="cost"
+      onChange={[Function]}
+      required={true}
+      type="number"
+      value=""
+    />
+  </div>
+  <div
+    className="number-input"
+  >
+    <label
+      htmlFor="items"
+    >
+      Number of items made
+    </label>
+    <input
+      id="items"
+      name="items"
+      onChange={[Function]}
+      required={true}
+      type="number"
+      value=""
+    />
+  </div>
+  <div
+    className="number-input"
+  >
+    <label
+      htmlFor="time"
+    >
+      Hours to make that many items
+    </label>
+    <input
+      id="time"
+      name="time"
+      onChange={[Function]}
+      required={true}
+      type="number"
+      value=""
+    />
+  </div>
+  <div
+    className="number-input"
+  >
+    <label
+      htmlFor="wage"
+    >
+      Hourly wage
+    </label>
+    <input
+      id="wage"
+      name="wage"
+      onChange={[Function]}
+      required={true}
+      type="number"
+      value=""
+    />
+  </div>
+  <div
+    className="number-input"
+  >
+    <label
+      htmlFor="markup"
+    >
+      Retail profit markup %
+    </label>
+    <input
+      id="markup"
+      name="markup"
+      onChange={[Function]}
+      required={true}
+      type="number"
+      value=""
+    />
+  </div>
+  <button
+    onClick={[Function]}
+  >
+    Calculate
+  </button>
+</div>
+`;

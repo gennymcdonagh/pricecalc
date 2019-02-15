@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<ul
+  className="result-list"
+>
+  <li>
+    <span
+      className="result-list__label"
+    >
+      key1
+      : 
+    </span>
+    <span
+      className="result-list__value"
+    >
+      $
+      val1
+    </span>
+  </li>
+  <li>
+    <span
+      className="result-list__label"
+    >
+      key2
+      : 
+    </span>
+    <span
+      className="result-list__value"
+    >
+      $
+      val2
+    </span>
+  </li>
+</ul>
+`;
