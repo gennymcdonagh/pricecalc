@@ -30,24 +30,34 @@ const calculateTotals = (data) => {
   });
 }
 
-const validate = (props) => {  
-  return {
-    cost: (props.cost < 0 || props.cost === "" || isNaN(props.cost)) 
-      ? "Needs to be 0 or more" 
-      : false,
-    items: (props.items < 1 || !Number.isInteger(Number(props.items)))
+const validate = (props) => { 
+  
+  const number0OrMoreFunc = ((p) => (p < 0 || p === "" || isNaN(p)) 
+  ? "Needs to be 0 or more" 
+  : false)
+
+  const validationFunctions = {
+    cost: number0OrMoreFunc,
+    items: ((p) => ((p < 1 || !Number.isInteger(Number(p)))
       ? "Needs to be 1 or more"
-      : false,
-    time: (props.time < 0 || props.time === "" || isNaN(props.time)) 
-      ? "Needs to be 0 or more" 
-      : false,
-    wage: (props.wage < 0 || props.wage === "" || isNaN(props.wage)) 
-      ? "Needs to be 0 or more"
-      : false,
-    markup: (props.markup < 0 || props.markup === "" || isNaN(props.markup)) 
-      ? "Needs to be 0 or more"
-      : false,
+      : false)),
+    time: number0OrMoreFunc,
+    wage: number0OrMoreFunc,
+    markup: number0OrMoreFunc,
   }
+
+  let errors = {};
+  let isFormValid = true;
+
+  //check each prop against its validation function and set form to invalid as soon as there's an error somewhere
+  Object.keys(props).forEach((i) => {
+    errors[i] = validationFunctions[i](props[i]);
+    if (validationFunctions[i](props[i])) {
+      isFormValid = false;
+    }
+  })
+
+  return { errors, isFormValid }
 };
 
 export const Form = (props) => {
@@ -57,10 +67,8 @@ export const Form = (props) => {
   const [wage, setWage] = useState("");
   const [markup, setMarkup] = useState("");
 
-  
-  const errors = validate({cost,items,time,wage,markup});
+  const { errors, isFormValid } = validate({cost,items,time,wage,markup});
   let totals = {};
-  const isFormValid = (Object.values(errors).every((v) => v === false));
 
   if (isFormValid) {
     totals = calculateTotals({cost,items,time,wage,markup});
