@@ -3,22 +3,28 @@ import './Result.css';
 import PropTypes from 'prop-types';
 
 export const Result = (props) => {
-    const { data } = props;
+    const { resultData } = props;
     let html = [];
 
-    for (const prop in data) {
+    resultData.forEach(s => {
       html.push(
-        <li key={prop}>
-          <span className="result-list__label">{prop}: </span>
-          <span className="result-list__value">${data[prop]}</span>
-        </li>
+        <h3 key={s.sectionName}>{s.sectionName}</h3>
       );
-    }
+
+      for (const prop in s.sectionData) {
+        html.push(
+          <li key={`${s.sectionName} ${prop}`}>
+            <span className="result-list__label">{prop}: </span>
+            <span className="result-list__value">${s.sectionData[prop]}</span>
+          </li>
+        );
+      }
+    })
     
     return (
-      <ul className="result-list">
+      <div className="result-list">
         {html}
-      </ul>
+      </div>
     )
 };
 

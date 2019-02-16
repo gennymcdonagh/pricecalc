@@ -10,9 +10,8 @@ import { NumberInput } from '../Input/NumberInput';
 import { Result } from '../Result/Result';
 
 import './Form.css';
-import PropTypes from 'prop-types';
 
-const calculateTotals = (data) => {
+const calculateResults = (data) => {
   const { cost, items, time, wage, markup } = data;
 
   const materialsPerItem = cost / items;
@@ -21,17 +20,34 @@ const calculateTotals = (data) => {
   const profit = costToMake * (markup / 100)
   const retailPrice = costToMake + profit;
 
-  return({
-    resultData: {
-      "Cost to make one item": costToMake,
-      "Retail price": retailPrice,
-      "Profit": profit,
+  let resultData = [
+    {
+      sectionName: "single item",
+      sectionData: {
+        "Cost to make": costToMake,
+        "Retail price": retailPrice,
+        "Profit": profit,
+      }
     }
-  });
+  ];
+
+  if (items > 1) {
+    resultData.push(
+      {
+        sectionName: `batch of ${items} items `,
+        sectionData: {
+          "Cost to make": costToMake * items,
+          "Retail price": retailPrice * items,
+          "Profit": profit * items,
+        }
+      }
+    );
+  }
+
+  return resultData;
 }
 
 const validate = (props) => { 
-  
   const number0OrMoreFunc = ((p) => (p < 0 || p === "" || isNaN(p)) 
   ? "Needs to be 0 or more" 
   : false)
@@ -68,10 +84,10 @@ export const Form = (props) => {
   const [markup, setMarkup] = useState("");
 
   const { errors, isFormValid } = validate({cost,items,time,wage,markup});
-  let totals = {};
+  let resultData = {};
 
   if (isFormValid) {
-    totals = calculateTotals({cost,items,time,wage,markup});
+    resultData = calculateResults({cost,items,time,wage,markup});
   }
 
   return (
@@ -116,13 +132,10 @@ export const Form = (props) => {
         errorState={errors.markup}
       />
 
-      {isFormValid && <Result data={totals.resultData} />}
+      {isFormValid && <Result resultData={resultData} />}
 
     </div>
   )
 }
-
-Form.propTypes = {
-};
 
 export default Form;
