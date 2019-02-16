@@ -1,27 +1,30 @@
 import React, { Component } from 'react';
 import './Result.css';
+import PropTypes from 'prop-types';
 
-class Result extends Component {
-    render() {
-      const { data } = this.props;
+export const Result = (props) => {
+    const { data } = props;
+    let html = [];
 
-      let html = [];
-
-      for (const prop in data) {
-        html.push(
-          <li key={prop}>
-            <span className="result-list__label">{prop}: </span>
-            <span className="result-list__value">${data[prop]}</span>
-          </li>
-        );
-      }
-      
-      return (
-        <ul className="result-list">
-          {html}
-        </ul>
-      )
+    for (const prop in data) {
+      html.push(
+        <li key={prop}>
+          <span className="result-list__label">{prop}: </span>
+          <span className="result-list__value">${data[prop]}</span>
+        </li>
+      );
     }
-}
+    
+    return (
+      <ul className="result-list">
+        {html}
+      </ul>
+    )
+};
 
-export default Result;
+Result.propTypes = {
+  data: PropTypes.objectOf(PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number
+  ]))
+}

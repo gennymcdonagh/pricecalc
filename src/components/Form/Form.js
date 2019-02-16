@@ -1,12 +1,15 @@
 /* 
 todo: validation 
+time input with minutes
 conditional label for hours field
 units
+write test for input
 */
 
 import React, { Component } from 'react';
 import { NumberInput } from '../Input/NumberInput';
 import './Form.css';
+import PropTypes from 'prop-types';
 
 class Form extends Component {
   constructor(props) {
@@ -75,5 +78,9 @@ class Form extends Component {
     );
   }
 }
+
+Form.propTypes = {
+  calculateTotals: PropTypes.func
+};
 
 export default Form;

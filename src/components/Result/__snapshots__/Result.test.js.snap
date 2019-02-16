@@ -15,7 +15,7 @@ exports[`renders correctly 1`] = `
       className="result-list__value"
     >
       $
-      val1
+      1
     </span>
   </li>
   <li>
@@ -29,7 +29,7 @@ exports[`renders correctly 1`] = `
       className="result-list__value"
     >
       $
-      val2
+      two
     </span>
   </li>
 </ul>

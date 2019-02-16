@@ -1,5 +1,6 @@
 import React from 'react';
 import './Input.css';
+import PropTypes from 'prop-types';
 
 export const NumberInput = (props) => {
   const {id, label, value, onChange} = props;
@@ -20,4 +21,11 @@ export const NumberInput = (props) => {
     </div>
   )
 };
+
+NumberInput.propTypes = {
+  id: PropTypes.string,
+  label: PropTypes.string,
+  value: PropTypes.string,
+  onChange: PropTypes.func
+}
 
