@@ -3,7 +3,7 @@ import './Input.css';
 import PropTypes from 'prop-types';
 
 export const NumberInput = (props) => {
-  const {id, label, value, onChange, error} = props;
+  const {id, label, value, onChange, errorState} = props;
   const [showError, setShowError] = useState(false);
 
   return (
@@ -11,16 +11,16 @@ export const NumberInput = (props) => {
       <label htmlFor={id}>
         {label}
       </label>
-      <input
+      <input className="number-input__field"
           value={value}
-          onChange={e => {setShowError(false); onChange(e);}}
-          onBlur={() => error && setShowError(true)}
+          onChange={e => onChange(e)}
+          onBlur={() => setShowError(true)}
           id={id}
           type="number"
           name={id}
           required
         />
-        {showError && <div className="number-input__error">{error}</div>}
+        {errorState !== false && showError && <div className="number-input__error">{errorState}</div>}
     </div>
   )
 };
@@ -30,6 +30,6 @@ NumberInput.propTypes = {
   label: PropTypes.string,
   value: PropTypes.string,
   onChange: PropTypes.func,
-  error: PropTypes.string
+  errorState: PropTypes.oneOfType([PropTypes.bool, PropTypes.string])
 }
 

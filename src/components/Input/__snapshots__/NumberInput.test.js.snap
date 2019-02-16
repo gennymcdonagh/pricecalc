@@ -6,6 +6,9 @@ exports[`renders correctly 1`] = `
 >
   <label />
   <input
+    className="number-input__field"
+    onBlur={[Function]}
+    onChange={[Function]}
     required={true}
     type="number"
   />

@@ -13,7 +13,7 @@ it('should calculate the totals correctly', () => {
   app.instance().calculateTotals({cost:50, items:10,time:10,wage:10,markup:20});
 
   const correctResult = {
-    "Cost to make": 15,
+    "Cost to make one item": 15,
     "Profit": 3,
     "Retail price": 18,
   };

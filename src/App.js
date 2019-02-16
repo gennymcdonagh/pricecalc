@@ -23,6 +23,12 @@ class App extends Component {
     });
   }
 
+  clearTotals = () => {
+    this.setState({
+      resultData: {}
+    });
+  }
+
   constructor() {
     super();
     this.state = {
@@ -35,7 +41,7 @@ class App extends Component {
     return (
       <div className="App">
         <h2>pricecalc</h2>
-        <Form calculateTotals={this.calculateTotals} />
+        <Form calculateTotals={this.calculateTotals} clearTotals={this.clearTotals} />
         {resultData && <Result data={resultData} />}
       </div>
     );

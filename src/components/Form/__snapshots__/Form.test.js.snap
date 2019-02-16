@@ -13,8 +13,10 @@ exports[`renders correctly 1`] = `
       Cost of materials
     </label>
     <input
+      className="number-input__field"
       id="cost"
       name="cost"
+      onBlur={[Function]}
       onChange={[Function]}
       required={true}
       type="number"
@@ -30,12 +32,14 @@ exports[`renders correctly 1`] = `
       Number of items made
     </label>
     <input
+      className="number-input__field"
       id="items"
       name="items"
+      onBlur={[Function]}
       onChange={[Function]}
       required={true}
       type="number"
-      value=""
+      value="1"
     />
   </div>
   <div
@@ -44,11 +48,13 @@ exports[`renders correctly 1`] = `
     <label
       htmlFor="time"
     >
-      Hours to make that many items
+      Hours to make an item
     </label>
     <input
+      className="number-input__field"
       id="time"
       name="time"
+      onBlur={[Function]}
       onChange={[Function]}
       required={true}
       type="number"
@@ -64,8 +70,10 @@ exports[`renders correctly 1`] = `
       Hourly wage
     </label>
     <input
+      className="number-input__field"
       id="wage"
       name="wage"
+      onBlur={[Function]}
       onChange={[Function]}
       required={true}
       type="number"
@@ -81,8 +89,10 @@ exports[`renders correctly 1`] = `
       Retail profit markup %
     </label>
     <input
+      className="number-input__field"
       id="markup"
       name="markup"
+      onBlur={[Function]}
       onChange={[Function]}
       required={true}
       type="number"

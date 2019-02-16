@@ -1,7 +1,6 @@
 /* 
-todo: validation 
+todo: 
 time input with minutes
-conditional label for hours field
 units
 write test for input
 */
@@ -12,74 +11,102 @@ import './Form.css';
 import PropTypes from 'prop-types';
 
 export const Form = (props) => {
-  const [cost, setCost] = useState({value: "", error: false});
-  const [items, setItems] = useState({value: 1, error: false});
-  const [time, setTime] = useState({value: "", error: false});
-  const [wage, setWage] = useState({value: "", error: false});
-  const [markup, setMarkup] = useState({value: "", error: false});
+  const [cost, setCost] = useState("");
+  const [items, setItems] = useState("1");
+  const [time, setTime] = useState("");
+  const [wage, setWage] = useState("");
+  const [markup, setMarkup] = useState("");
 
   const clearAll = () => {
-    console.log('clearing');
-    setCost({value: "", error:false});
+    //todo
   }
+
+  const validate = (props) => {  
+    return {
+      cost: (props.cost < 0 || props.cost === "" || isNaN(props.cost)) 
+        ? "Needs to be 0 or more" 
+        : false,
+      items: (props.items < 1 || !Number.isInteger(Number(props.items)))
+        ? "Needs to be 1 or more"
+        : false,
+      time: (props.time < 0 || props.time === "" || isNaN(props.time)) 
+        ? "Needs to be 0 or more" 
+        : false,
+      wage: (props.wage < 0 || props.wage === "" || isNaN(props.wage)) 
+        ? "Needs to be 0 or more"
+        : false,
+      markup: (props.markup < 0 || props.markup === "" || isNaN(props.markup)) 
+        ? "Needs to be 0 or more"
+        : false,
+    }
+  };
+
+  const errors = validate({cost,items,time,wage,markup});
+  const isFormValid = (Object.values(errors).every((v) => v === false));
 
   return (
     <div className="form">
       <NumberInput
-        value={cost.value}
-        onChange={e => setCost({value: e.target.value, error: (e.target.value < 0)})}
+        value={cost}
+        onChange={e => setCost(e.target.value)}
         label="Cost of materials"
         id="cost"
-        error={(cost.error) && "Needs to be 0 or more"}
+        errorState={errors.cost}
       />
 
       <NumberInput
-        value={items.value}
-        onChange={e => setItems({value: e.target.value, error: (e.target.value < 1)})}
+        value={items}
+        onChange={e => setItems(e.target.value)}
         label="Number of items made"
         id="items"
-        error={(items.error) && "Needs to be 1 or more"}
+        errorState={errors.items}
       />
 
       <NumberInput
-        value={time.value}
-        onChange={e => setTime({value: e.target.value, error: (e.target.value < 0)})}
+        value={time}
+        onChange={e => setTime(e.target.value)}
         label={`Hours to make ${(items >= 2) ? items + ' items' : 'an item'}`}
         id="time"
-        error={(time.error) && "Needs to be 0 or more"}
+        errorState={errors.time}
       />
 
       <NumberInput
-        value={wage.value}
-        onChange={e => setWage({value: e.target.value, error: (e.target.value < 0)})}
+        value={wage}
+        onChange={e => setWage(e.target.value)}
         label="Hourly wage"
         id="wage"
-        error={(wage.error) && "Needs to be 0 or more"}
+        errorState={errors.wage}
       />
 
       <NumberInput
-        value={markup.value}
-        onChange={e => setMarkup({value: e.target.value, error: (e.target.value < 0)})}
+        value={markup}
+        onChange={e => setMarkup(e.target.value)}
         label="Retail profit markup %"
         id="markup"
-        error={(markup.error) && "Needs to be 0 or more"}
+        errorState={errors.markup}
       />
 
       <button 
-        onClick={() => props.calculateTotals({
-          cost: cost.value, 
-          items: items.value, 
-          time: time.value, 
-          wage: wage.value, 
-          markup: markup.value
-        })}>
+        className={isFormValid ? '': 'disabled'}
+        onClick={() => {
+          if (isFormValid) {
+            console.log('all valid');
+            props.calculateTotals({
+              cost: cost, 
+              items: items, 
+              time: time, 
+              wage: wage, 
+              markup: markup
+            })
+          } else {
+            console.log('somethings invalid')
+            props.clearTotals();
+          }
+        }}
+      >
         Calculate
       </button>
 
-      <button 
-        onClick={clearAll}>
-        Clear all
-      </button>
     </div>
   )
 }

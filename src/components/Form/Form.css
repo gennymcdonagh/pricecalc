@@ -4,4 +4,10 @@ button {
   border: none;
   background: #ff88ff;
   font-size: 17px;
+  cursor: pointer;
+}
+
+button.disabled {
+  background: lightgray;
+  color: gray;
 }

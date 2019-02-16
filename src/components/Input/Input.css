@@ -8,7 +8,7 @@
   display: block;
 }
 
-.number-input input {
+.number-input__field {
   padding: 5px;
 
 }
