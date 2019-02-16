@@ -7,8 +7,48 @@ write test for input
 
 import React, { useState } from 'react';
 import { NumberInput } from '../Input/NumberInput';
+import { Result } from '../Result/Result';
+
 import './Form.css';
 import PropTypes from 'prop-types';
+
+const calculateTotals = (data) => {
+  const { cost, items, time, wage, markup } = data;
+
+  const materialsPerItem = cost / items;
+  const wagePerItem = (time * wage) / items;
+  const costToMake = materialsPerItem + wagePerItem;
+  const profit = costToMake * (markup / 100)
+  const retailPrice = costToMake + profit;
+
+  return({
+    resultData: {
+      "Cost to make one item": costToMake,
+      "Retail price": retailPrice,
+      "Profit": profit,
+    }
+  });
+}
+
+const validate = (props) => {  
+  return {
+    cost: (props.cost < 0 || props.cost === "" || isNaN(props.cost)) 
+      ? "Needs to be 0 or more" 
+      : false,
+    items: (props.items < 1 || !Number.isInteger(Number(props.items)))
+      ? "Needs to be 1 or more"
+      : false,
+    time: (props.time < 0 || props.time === "" || isNaN(props.time)) 
+      ? "Needs to be 0 or more" 
+      : false,
+    wage: (props.wage < 0 || props.wage === "" || isNaN(props.wage)) 
+      ? "Needs to be 0 or more"
+      : false,
+    markup: (props.markup < 0 || props.markup === "" || isNaN(props.markup)) 
+      ? "Needs to be 0 or more"
+      : false,
+  }
+};
 
 export const Form = (props) => {
   const [cost, setCost] = useState("");
@@ -17,32 +57,14 @@ export const Form = (props) => {
   const [wage, setWage] = useState("");
   const [markup, setMarkup] = useState("");
 
-  const clearAll = () => {
-    //todo
-  }
-
-  const validate = (props) => {  
-    return {
-      cost: (props.cost < 0 || props.cost === "" || isNaN(props.cost)) 
-        ? "Needs to be 0 or more" 
-        : false,
-      items: (props.items < 1 || !Number.isInteger(Number(props.items)))
-        ? "Needs to be 1 or more"
-        : false,
-      time: (props.time < 0 || props.time === "" || isNaN(props.time)) 
-        ? "Needs to be 0 or more" 
-        : false,
-      wage: (props.wage < 0 || props.wage === "" || isNaN(props.wage)) 
-        ? "Needs to be 0 or more"
-        : false,
-      markup: (props.markup < 0 || props.markup === "" || isNaN(props.markup)) 
-        ? "Needs to be 0 or more"
-        : false,
-    }
-  };
-
+  
   const errors = validate({cost,items,time,wage,markup});
+  let totals = {};
   const isFormValid = (Object.values(errors).every((v) => v === false));
+
+  if (isFormValid) {
+    totals = calculateTotals({cost,items,time,wage,markup});
+  }
 
   return (
     <div className="form">
@@ -86,33 +108,13 @@ export const Form = (props) => {
         errorState={errors.markup}
       />
 
-      <button 
-        className={isFormValid ? '': 'disabled'}
-        onClick={() => {
-          if (isFormValid) {
-            console.log('all valid');
-            props.calculateTotals({
-              cost: cost, 
-              items: items, 
-              time: time, 
-              wage: wage, 
-              markup: markup
-            })
-          } else {
-            console.log('somethings invalid')
-            props.clearTotals();
-          }
-        }}
-      >
-        Calculate
-      </button>
+      {isFormValid && <Result data={totals.resultData} />}
 
     </div>
   )
 }
 
 Form.propTypes = {
-  calculateTotals: PropTypes.func
 };
 
 export default Form;

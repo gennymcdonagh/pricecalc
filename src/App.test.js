@@ -8,14 +8,4 @@ it('renders correctly', () => {
   expect(app).toMatchSnapshot();
 })
 
-it('should calculate the totals correctly', () => {
-  const app = shallow(<App />);
-  app.instance().calculateTotals({cost:50, items:10,time:10,wage:10,markup:20});
 
-  const correctResult = {
-    "Cost to make one item": 15,
-    "Profit": 3,
-    "Retail price": 18,
-  };
-  expect(app.state('resultData')).toMatchObject(correctResult);
-})

@@ -99,10 +99,5 @@ exports[`renders correctly 1`] = `
       value=""
     />
   </div>
-  <button
-    onClick={[Function]}
-  >
-    Calculate
-  </button>
 </div>
 `;
