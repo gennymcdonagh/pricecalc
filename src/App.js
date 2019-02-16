@@ -16,7 +16,7 @@ class App extends Component {
 
     this.setState({
       resultData: {
-        "Cost to make": costToMake,
+        "Cost to make one item": costToMake,
         "Retail price": retailPrice,
         "Profit": profit,
       }

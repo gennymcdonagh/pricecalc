@@ -12,52 +12,73 @@ import './Form.css';
 import PropTypes from 'prop-types';
 
 export const Form = (props) => {
-  const [cost, setCost] = useState("");
-  const [items, setItems] = useState("");
-  const [time, setTime] = useState("");
-  const [wage, setWage] = useState("");
-  const [markup, setMarkup] = useState("");
+  const [cost, setCost] = useState({value: "", error: false});
+  const [items, setItems] = useState({value: 1, error: false});
+  const [time, setTime] = useState({value: "", error: false});
+  const [wage, setWage] = useState({value: "", error: false});
+  const [markup, setMarkup] = useState({value: "", error: false});
+
+  const clearAll = () => {
+    console.log('clearing');
+    setCost({value: "", error:false});
+  }
 
   return (
     <div className="form">
       <NumberInput
-        value={cost}
-        onChange={e => setCost(e.target.value)}
+        value={cost.value}
+        onChange={e => setCost({value: e.target.value, error: (e.target.value < 0)})}
         label="Cost of materials"
         id="cost"
+        error={(cost.error) && "Needs to be 0 or more"}
       />
 
       <NumberInput
-        value={items}
-        onChange={e => setItems(e.target.value)}
+        value={items.value}
+        onChange={e => setItems({value: e.target.value, error: (e.target.value < 1)})}
         label="Number of items made"
         id="items"
+        error={(items.error) && "Needs to be 1 or more"}
       />
 
       <NumberInput
-        value={time}
-        onChange={e => setTime(e.target.value)}
-        label="Hours to make that many items"
+        value={time.value}
+        onChange={e => setTime({value: e.target.value, error: (e.target.value < 0)})}
+        label={`Hours to make ${(items >= 2) ? items + ' items' : 'an item'}`}
         id="time"
+        error={(time.error) && "Needs to be 0 or more"}
       />
 
       <NumberInput
-        value={wage}
-        onChange={e => setWage(e.target.value)}
+        value={wage.value}
+        onChange={e => setWage({value: e.target.value, error: (e.target.value < 0)})}
         label="Hourly wage"
         id="wage"
+        error={(wage.error) && "Needs to be 0 or more"}
       />
 
       <NumberInput
-        value={markup}
-        onChange={e => setMarkup(e.target.value)}
+        value={markup.value}
+        onChange={e => setMarkup({value: e.target.value, error: (e.target.value < 0)})}
         label="Retail profit markup %"
         id="markup"
+        error={(markup.error) && "Needs to be 0 or more"}
       />
 
       <button 
-        onClick={() => props.calculateTotals({cost, items, time, wage, markup})}>
+        onClick={() => props.calculateTotals({
+          cost: cost.value, 
+          items: items.value, 
+          time: time.value, 
+          wage: wage.value, 
+          markup: markup.value
+        })}>
         Calculate
+      </button>
+
+      <button 
+        onClick={clearAll}>
+        Clear all
       </button>
     </div>
   )
