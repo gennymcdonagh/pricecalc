@@ -7,12 +7,15 @@ exports[`renders correctly 1`] = `
   <label
     className="number-input__label"
   />
-  <input
-    className="number-input__field"
-    onBlur={[Function]}
-    onChange={[Function]}
-    required={true}
-    type="number"
-  />
+  <div
+    className="number-input__wrapper"
+  >
+    <input
+      onBlur={[Function]}
+      onChange={[Function]}
+      required={true}
+      type="number"
+    />
+  </div>
 </div>
 `;

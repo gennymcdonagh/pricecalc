@@ -7,33 +7,39 @@ exports[`renders correctly 1`] = `
   <h3>
     name
   </h3>
-  <li>
-    <span
-      className="result-list__label"
+  <table>
+    <tr
+      className="result-list__tr"
     >
-      key1
-      : 
-    </span>
-    <span
-      className="result-list__value"
+      <td
+        className="result-list__td"
+      >
+        key1
+        : 
+      </td>
+      <td
+        className="result-list__td"
+      >
+        $
+        1.00
+      </td>
+    </tr>
+    <tr
+      className="result-list__tr"
     >
-      $
-      1
-    </span>
-  </li>
-  <li>
-    <span
-      className="result-list__label"
-    >
-      key2
-      : 
-    </span>
-    <span
-      className="result-list__value"
-    >
-      $
-      2
-    </span>
-  </li>
+      <td
+        className="result-list__td"
+      >
+        key2
+        : 
+      </td>
+      <td
+        className="result-list__td"
+      >
+        $
+        2.00
+      </td>
+    </tr>
+  </table>
 </div>
 `;

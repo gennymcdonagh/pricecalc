@@ -24,7 +24,7 @@ const calculateResults = (data) => {
 
   let resultData = [
     {
-      sectionName: "single item",
+      sectionName: "Single item",
       sectionData: {
         "Cost to make": costToMake,
         "Retail price": retailPrice,
@@ -36,7 +36,7 @@ const calculateResults = (data) => {
   if (items > 1) {
     resultData.push(
       {
-        sectionName: `batch of ${items} items `,
+        sectionName: `Batch of ${items} items `,
         sectionData: {
           "Cost to make": costToMake * items,
           "Retail price": retailPrice * items,

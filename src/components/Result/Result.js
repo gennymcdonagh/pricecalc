@@ -11,14 +11,22 @@ export const Result = (props) => {
         <h3 key={s.sectionName}>{s.sectionName}</h3>
       );
 
+      let sectionRows = [];
+
       for (const prop in s.sectionData) {
-        html.push(
-          <li key={`${s.sectionName} ${prop}`}>
-            <span className="result-list__label">{prop}: </span>
-            <span className="result-list__value">${s.sectionData[prop]}</span>
-          </li>
+        sectionRows.push(
+          <tr className="result-list__tr" key={`${s.sectionName} ${prop}`}>
+            <td className="result-list__td">{prop}: </td>
+            <td className="result-list__td">${s.sectionData[prop].toFixed(2)}</td>
+          </tr>
         );
       }
+
+      html.push(
+        <table key={`${s.sectionName}-table`}>
+          {sectionRows}
+        </table>
+      )
     })
     
     return (
