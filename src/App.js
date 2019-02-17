@@ -1,17 +1,14 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './App.css';
 import Form from './components/Form/Form';
 
-class App extends Component {
-
-  render() {
+const App = () => {
     return (
       <div className="App">
-        <h2>pricecalc</h2>
+        <h2>Craft Pricing Calculator</h2>
         <Form />
       </div>
     );
-  }
 }
 
 export default App;

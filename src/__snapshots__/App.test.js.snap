@@ -5,7 +5,7 @@ exports[`renders correctly 1`] = `
   className="App"
 >
   <h2>
-    pricecalc
+    Craft Pricing Calculator
   </h2>
   <Form />
 </div>

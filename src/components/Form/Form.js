@@ -1,8 +1,10 @@
 /* 
 todo: 
 time input with minutes
-units
 write test for input
+format prices
+favicon
+styling
 */
 
 import React, { useState } from 'react';
@@ -52,11 +54,13 @@ const validate = (props) => {
   ? "Needs to be 0 or more" 
   : false)
 
+  // todo this is a bit repetitive
+  // but later on could need different validation func for time (hours/mins etc)
   const validationFunctions = {
     cost: number0OrMoreFunc,
-    items: ((p) => ((p < 1 || !Number.isInteger(Number(p)))
-      ? "Needs to be 1 or more"
-      : false)),
+    items: ((p) => (p < 1 || p === "" || isNaN(p)) 
+    ? "Needs to be 1 or more" 
+    : false),
     time: number0OrMoreFunc,
     wage: number0OrMoreFunc,
     markup: number0OrMoreFunc,
@@ -76,7 +80,7 @@ const validate = (props) => {
   return { errors, isFormValid }
 };
 
-export const Form = (props) => {
+const Form = (props) => {
   const [cost, setCost] = useState("");
   const [items, setItems] = useState("1");
   const [time, setTime] = useState("");
@@ -90,6 +94,7 @@ export const Form = (props) => {
     resultData = calculateResults({cost,items,time,wage,markup});
   }
 
+  // todo iterate over array to generate NumberInputs?
   return (
     <div className="form">
       <NumberInput
@@ -98,6 +103,7 @@ export const Form = (props) => {
         label="Cost of materials"
         id="cost"
         errorState={errors.cost}
+        showDollarLabel
       />
 
       <NumberInput
@@ -111,7 +117,7 @@ export const Form = (props) => {
       <NumberInput
         value={time}
         onChange={e => setTime(e.target.value)}
-        label={`Hours to make ${(items >= 2) ? items + ' items' : 'an item'}`}
+        label={`Hours to make ${(items > 1) ? items + ' items' : 'an item'}`}
         id="time"
         errorState={errors.time}
       />
@@ -122,6 +128,7 @@ export const Form = (props) => {
         label="Hourly wage"
         id="wage"
         errorState={errors.wage}
+        showDollarLabel
       />
 
       <NumberInput
@@ -130,6 +137,7 @@ export const Form = (props) => {
         label="Retail profit markup %"
         id="markup"
         errorState={errors.markup}
+        showPercentLabel
       />
 
       {isFormValid && <Result resultData={resultData} />}

@@ -9,6 +9,7 @@ exports[`renders correctly 1`] = `
     id="cost"
     label="Cost of materials"
     onChange={[Function]}
+    showDollarLabel={true}
     value=""
   />
   <NumberInput
@@ -30,6 +31,7 @@ exports[`renders correctly 1`] = `
     id="wage"
     label="Hourly wage"
     onChange={[Function]}
+    showDollarLabel={true}
     value=""
   />
   <NumberInput
@@ -37,6 +39,7 @@ exports[`renders correctly 1`] = `
     id="markup"
     label="Retail profit markup %"
     onChange={[Function]}
+    showPercentLabel={true}
     value=""
   />
 </div>

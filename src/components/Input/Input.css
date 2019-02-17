@@ -1,17 +1,49 @@
 .number-input {
-  margin-bottom: 5px;
+  margin-bottom: 15px;
 }
 
 .number-input__label {
-  margin-right: 5px;
-  padding: 5px;
   display: block;
+  width: 100%;
+  margin-bottom: 3px;
 }
 
-.number-input__field {
+.number-input__wrapper {
+  position: relative;
+}
+
+.number-input__wrapper > input {
   padding: 5px;
+  width: 100%;
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+.number-input__wrapper--icon> input {
+  padding: 5px 5px 5px 20px;
+}
+
+.number-input__wrapper--icon-right> input {
+  padding: 5px 20px 5px 5px;
+}
+
+.number-input__wrapper--icon > i {
+  position: absolute;
+  display: block;
+  top: 0;
+  padding: 4px;
+  pointer-events: none;
+  width: 20px;
+  text-align: center;
+	font-style: normal;
+}
+
+.number-input__wrapper--icon-right > i {
+  right: 0;
 }
 
 .number-input__error {
   color: red;
+  font-size: 12px;
+  width: 100%;
 }
