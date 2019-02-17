@@ -29,8 +29,12 @@ export const Result = (props) => {
 };
 
 Result.propTypes = {
-  data: PropTypes.objectOf(PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number
-  ]))
+  resultData: PropTypes.arrayOf(
+    PropTypes.shape({
+      sectionName: PropTypes.string,
+      sectionData: PropTypes.objectOf(PropTypes.number)
+    })
+  )
 }
+
+export default Result;

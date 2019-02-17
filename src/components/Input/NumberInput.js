@@ -8,7 +8,7 @@ export const NumberInput = (props) => {
 
   return (
     <div className="number-input">
-      <label htmlFor={id}>
+      <label className="number-input__label" htmlFor={id}>
         {label}
       </label>
       <input className="number-input__field"
@@ -20,7 +20,9 @@ export const NumberInput = (props) => {
           name={id}
           required
         />
-        {errorState !== false && showError && <div className="number-input__error">{errorState}</div>}
+        {errorState !== false && showError && 
+          <div className="number-input__error">{errorState}</div>
+        }
     </div>
   )
 };

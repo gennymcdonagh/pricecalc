@@ -4,6 +4,6 @@ import renderer from 'react-test-renderer';
 import { Result } from './Result';
 
 it('renders correctly', () => {
-  const result = renderer.create(<Result data={{"key1":1,"key2":"two"}}/>).toJSON();
+  const result = renderer.create(<Result resultData={[{sectionName: "name", sectionData: {"key1":1,"key2":2}}]}/>).toJSON();
   expect(result).toMatchSnapshot();
 })

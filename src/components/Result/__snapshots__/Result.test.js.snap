@@ -1,9 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders correctly 1`] = `
-<ul
+<div
   className="result-list"
 >
+  <h3>
+    name
+  </h3>
   <li>
     <span
       className="result-list__label"
@@ -29,8 +32,8 @@ exports[`renders correctly 1`] = `
       className="result-list__value"
     >
       $
-      two
+      2
     </span>
   </li>
-</ul>
+</div>
 `;

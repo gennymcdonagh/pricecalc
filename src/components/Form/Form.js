@@ -6,8 +6,8 @@ write test for input
 */
 
 import React, { useState } from 'react';
-import { NumberInput } from '../Input/NumberInput';
-import { Result } from '../Result/Result';
+import NumberInput from '../Input/NumberInput';
+import Result from '../Result/Result';
 
 import './Form.css';
 

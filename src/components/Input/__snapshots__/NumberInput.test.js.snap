@@ -4,7 +4,9 @@ exports[`renders correctly 1`] = `
 <div
   className="number-input"
 >
-  <label />
+  <label
+    className="number-input__label"
+  />
   <input
     className="number-input__field"
     onBlur={[Function]}

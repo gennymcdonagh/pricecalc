@@ -4,100 +4,40 @@ exports[`renders correctly 1`] = `
 <div
   className="form"
 >
-  <div
-    className="number-input"
-  >
-    <label
-      htmlFor="cost"
-    >
-      Cost of materials
-    </label>
-    <input
-      className="number-input__field"
-      id="cost"
-      name="cost"
-      onBlur={[Function]}
-      onChange={[Function]}
-      required={true}
-      type="number"
-      value=""
-    />
-  </div>
-  <div
-    className="number-input"
-  >
-    <label
-      htmlFor="items"
-    >
-      Number of items made
-    </label>
-    <input
-      className="number-input__field"
-      id="items"
-      name="items"
-      onBlur={[Function]}
-      onChange={[Function]}
-      required={true}
-      type="number"
-      value="1"
-    />
-  </div>
-  <div
-    className="number-input"
-  >
-    <label
-      htmlFor="time"
-    >
-      Hours to make an item
-    </label>
-    <input
-      className="number-input__field"
-      id="time"
-      name="time"
-      onBlur={[Function]}
-      onChange={[Function]}
-      required={true}
-      type="number"
-      value=""
-    />
-  </div>
-  <div
-    className="number-input"
-  >
-    <label
-      htmlFor="wage"
-    >
-      Hourly wage
-    </label>
-    <input
-      className="number-input__field"
-      id="wage"
-      name="wage"
-      onBlur={[Function]}
-      onChange={[Function]}
-      required={true}
-      type="number"
-      value=""
-    />
-  </div>
-  <div
-    className="number-input"
-  >
-    <label
-      htmlFor="markup"
-    >
-      Retail profit markup %
-    </label>
-    <input
-      className="number-input__field"
-      id="markup"
-      name="markup"
-      onBlur={[Function]}
-      onChange={[Function]}
-      required={true}
-      type="number"
-      value=""
-    />
-  </div>
+  <NumberInput
+    errorState="Needs to be 0 or more"
+    id="cost"
+    label="Cost of materials"
+    onChange={[Function]}
+    value=""
+  />
+  <NumberInput
+    errorState={false}
+    id="items"
+    label="Number of items made"
+    onChange={[Function]}
+    value="1"
+  />
+  <NumberInput
+    errorState="Needs to be 0 or more"
+    id="time"
+    label="Hours to make an item"
+    onChange={[Function]}
+    value=""
+  />
+  <NumberInput
+    errorState="Needs to be 0 or more"
+    id="wage"
+    label="Hourly wage"
+    onChange={[Function]}
+    value=""
+  />
+  <NumberInput
+    errorState="Needs to be 0 or more"
+    id="markup"
+    label="Retail profit markup %"
+    onChange={[Function]}
+    value=""
+  />
 </div>
 `;
