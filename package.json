@@ -31,10 +31,8 @@
     "fs-extra": "7.0.1",
     "html-webpack-plugin": "4.0.0-alpha.2",
     "identity-obj-proxy": "3.0.0",
-    "jest": "^24.9.0",
     "jest-pnp-resolver": "1.0.2",
     "jest-resolve": "23.6.0",
-    "jest-watch-typeahead": "^0.2.1",
     "mini-css-extract-plugin": "0.5.0",
     "optimize-css-assets-webpack-plugin": "5.0.1",
     "pnp-webpack-plugin": "1.2.1",
@@ -60,7 +58,7 @@
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
-    "test": "node scripts/test.js",
+    "test": "node scripts/test.js --watchAll",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
   },
@@ -84,7 +82,8 @@
     ],
     "testMatch": [
       "<rootDir>/src/**/__tests__/**/*.{js,jsx,ts,tsx}",
-      "<rootDir>/src/**/?(*.)(spec|test).{js,jsx,ts,tsx}"
+      "<rootDir>/src/**/?(*.)(spec|test).{js,jsx,ts,tsx}",
+      "**/*.test.js"
     ],
     "testEnvironment": "jsdom",
     "testURL": "http://localhost",
@@ -114,10 +113,12 @@
       "node"
     ],
     "watchPlugins": [
-      "D:\\dev\\pricecalc\\node_modules\\jest-watch-typeahead\\filename.js",
-      "D:\\dev\\pricecalc\\node_modules\\jest-watch-typeahead\\testname.js"
+      "jest-watch-typeahead/filename",
+      "jest-watch-typeahead/testname"
     ],
-    "setupTestFrameworkScriptFile": "<rootDir>/src/setupTests.js"
+    "setupFilesAfterEnv": [
+      "<rootDir>/src/setupTests.js"
+    ]
   },
   "babel": {
     "presets": [
@@ -125,6 +126,8 @@
     ]
   },
   "devDependencies": {
-    "gh-pages": "^2.0.1"
+    "gh-pages": "^2.0.1",
+    "jest": "^24.9.0",
+    "jest-watch-typeahead": "^0.2.1"
   }
 }

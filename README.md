@@ -6,6 +6,8 @@ Installation: npm install
 
 Running locally: npm start
 
+Testing: npm test
+
 todo: 
 - finish readme
 - add hours/minutes inputs
